@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue-demo-todolist</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <input v-model="inputValue"/>
+    <button @click="handleSubmit">提交</button>
+    <ul>
+        <todo-item v-for="(item, index) of list"
+                   :key="index"
+                   :content="item"
+                   :index="index"
+                   @delete="handleDelete"
+        >
+        </todo-item>
+    </ul>
+</div>
+<script>
+    //全局组件（也是实例）
+    Vue.component("todo-item", {
+        props: ["content", "index"],//父组件向子组件传递数据
+        template: "<li @click='handleClick'>{{content}}</li>",
+        methods: {
+            handleClick: function () {
+                this.$emit("delete", this.index)//子组件向父组件传递数据
+            }
+        }
+    })
+    //局部组件
+    // var TodoItem = {
+    //     template:"<li>item</li>>"
+    // }
+    //实例
+    new Vue({
+        el: "#root",//挂载点
+        // components:{
+        //   "todo-item":  TodoItem
+        // },
+        data: {
+            inputValue: "",
+            list: []
+        },
+        methods: {
+            handleSubmit: function () {
+                this.list.push(this.inputValue);
+                this.inputValue = ""
+            },
+            handleDelete: function (index) {
+                this.list.splice(index, 1)
+            }
+        }
+    })
+</script>
+</body>
+</html>
