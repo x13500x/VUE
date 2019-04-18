@@ -18,6 +18,12 @@
         >
         </todo-item>
     </ul>
+    {{count}} ----{{ (count + 1)*10}}
+    <button @click="plus">加数字</button>
+    <br>
+    <a :href="url">百度</a>
+    <div>{{msg}}</div>
+    <div>{{msg1}}</div>
 </div>
 <script>
     //全局组件（也是实例）
@@ -34,15 +40,20 @@
     // var TodoItem = {
     //     template:"<li>item</li>>"
     // }
+    var arr = "new text"//不在实例中，不影响computed变化
     //实例
-    new Vue({
+    var app = new Vue({
         el: "#root",//挂载点
         // components:{
         //   "todo-item":  TodoItem
         // },
         data: {
             inputValue: "",
-            list: []
+            list: [],
+            count:0,
+            url:"http://www.baidu.com",
+            msg:"Hello Vue!",
+            another:"another Vue!!!"
         },
         methods: {
             handleSubmit: function () {
@@ -51,6 +62,21 @@
             },
             handleDelete: function (index) {
                 this.list.splice(index, 1)
+            },
+            plus:function () {
+                this.count ++
+            }
+        },
+        watch:{
+            msg:function (newval, oldval) {
+                console.log("newval is:" + newval);
+                console.log("oldval is:" + oldval)
+            }
+        },
+        //监听的变量在VUE实例中
+        computed:{
+            msg1:function () {
+                return "computed:" + this.msg + "," + this.another + arr
             }
         }
     })
