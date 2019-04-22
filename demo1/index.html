@@ -18,12 +18,29 @@
         >
         </todo-item>
     </ul>
-    {{count}} ----{{ (count + 1)*10}}
+    {{count}} :{{ (count + 1)*10}}
     <button @click="plus">加数字</button>
     <br>
     <a :href="url">百度</a>
     <div>{{msg}}</div>
     <div>{{msg1}}</div>
+    <div v-if="count > 0 ">
+        判断1：count的值：{{count}}
+    </div>
+    <div v-else-if="count < 0 && count > -5">
+        判断2：count的值：{{count}}
+    </div>
+    <div v-else>
+        判断3：count的值：{{count}}
+    </div>
+    <div v-for="item in peopleList">
+        <div v-show="item.age > 25"
+             :style="peopleStyle"
+             :class="{'active':true}">
+            {{item.name}}
+        </div>
+
+    </div>
 </div>
 <script>
     //全局组件（也是实例）
@@ -45,15 +62,26 @@
     var app = new Vue({
         el: "#root",//挂载点
         // components:{
-        //   "todo-item":  TodoItem
+        // "todo-item":  TodoItem
         // },
         data: {
             inputValue: "",
             list: [],
-            count:0,
-            url:"http://www.baidu.com",
-            msg:"Hello Vue!",
-            another:"another Vue!!!"
+            count: 0,
+            url: "http://www.baidu.com",
+            msg: "Hello Vue!",
+            another: "another Vue!!!",
+            peopleList: [{
+                name: "小李",
+                age: "29"
+            }, {
+                name: "小王",
+                age: "20"
+            }],
+            peopleStyle: {
+                color: "red",
+                textShadow: "0 0 5px yellow"
+            }
         },
         methods: {
             handleSubmit: function () {
@@ -63,19 +91,19 @@
             handleDelete: function (index) {
                 this.list.splice(index, 1)
             },
-            plus:function () {
-                this.count ++
+            plus: function () {
+                this.count++
             }
         },
-        watch:{
-            msg:function (newval, oldval) {
+        watch: {
+            msg: function (newval, oldval) {
                 console.log("newval is:" + newval);
                 console.log("oldval is:" + oldval)
             }
         },
         //监听的变量在VUE实例中
-        computed:{
-            msg1:function () {
+        computed: {
+            msg1: function () {
                 return "computed:" + this.msg + "," + this.another + arr
             }
         }
