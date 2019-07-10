@@ -2,28 +2,34 @@
   <div>
     <router-view/>
     <ul class="footer">
-      <li class="icon"><router-link :to="{name:'list'}">新闻列表</router-link></li>
-      <li class="icon"><router-link :to="{name:'user'}">个人中心</router-link></li>
+      <li class="icon">
+        <router-link :to="{name:'list'}">新闻列表</router-link>
+      </li>
+      <li class="icon">
+        <router-link :to="{name:'user'}">个人中心</router-link>
+      </li>
     </ul>
   </div>
 
 </template>
 
 <script>
-    export default {
-        name: "Home"
-    }
+  export default {
+    name: "Home"
+  }
 </script>
 
 <style scoped lang="scss">
-  ul{
+  ul {
     padding: 0;
     margin: 0;
   }
-  li{
+
+  li {
     list-style: none;
   }
-  .footer{
+
+  .footer {
     position: fixed;
     width: 100%;
     height: 60px;
@@ -34,10 +40,19 @@
     flex-flow: row nowrap;
     justify-content: space-around;
   }
-  .icon{
+
+  .icon {
     font-size: 16px;
-    flex:1;
+    flex: 1;
     text-align: center;
     border-top: 1px solid #42b983;
+    a {
+      color: #42b983;
+      display: block;
+      &.active {
+        color: #fff;
+        background: #42b983;
+      }
+    }
   }
 </style>

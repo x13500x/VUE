@@ -1,13 +1,15 @@
 <template>
   <div>
+    <h3>欢迎登陆</h3>
     <form v-if="!isReg">
-      <div>用户名：</div>
+      <span>用户名：</span>
       <input type="text" v-model="name">
-      <div>密码：</div>
+      <br>
+      <span>密码：</span>
       <input type="password" v-model="password">
-      <div>
-        <button type="button" @click="login()">登录</button>
-        <button type="button" @click="reg()">注册</button>
+      <div class="login">
+        <button type="button" @click="login()" class="login1">登录</button>
+        <button type="button" @click="reg()" class="login1">注册</button>
       </div>
     </form>
     <form v-else>
@@ -66,6 +68,22 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .login{
+    text-align: center;
+    margin: 20px auto;
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
 
+    .login1{
+      border:1px solid gray;
+      width: 45%;
+      border-radius: 4px;
+      background: #fff;
+      height: 30px;
+      line-height: 30px;
+      color: #42b983;
+    }
+  }
 </style>
