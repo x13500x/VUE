@@ -1,0 +1,38 @@
+<template>
+    <div>
+        <h2>我是一个头部组件--{{title}}--{{msg}}</h2>
+        <button @click="run(123)">执行父组件传递的方法</button>
+
+        <br>
+        <button @click="getParent()">获取父组件的数据和方法</button>
+    </div>
+</template>
+
+<script>
+    //父组件给子组件传值
+    //1、父组件调用子组件的时候，绑定动态属性
+    //<v-header :title="title" :msg="msg"></v-header>
+    //2、在子组件里面通过props接收父组件传过来的数据
+    //父组件主动获取子组件的数据和方法
+    //1、调用子组件时定义一个ref:<v-header ref="header"></v-header>
+    //2、在父组件里通过this.$refs.header.属性；this.$refs.header.方法
+    //子组件主动获取父组件的数据和方法
+    //this.$parent.数据，this.$parent.方法
+    export default {
+        name: "Header",
+        data() {
+            return {}
+        },
+        methods:{
+            getParent(){
+                // alert(this.home.title)
+                this.home.run(123)
+            }
+        },
+        props: ["title", "msg","run","home"]
+    }
+</script>
+
+<style scoped lang="scss">
+
+</style>
