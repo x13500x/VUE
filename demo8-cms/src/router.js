@@ -8,7 +8,7 @@ export default new Router({
     routes: [
         {
             path: "/",
-            redirect:"/home"
+            redirect: "/home"
         },
         {
             path: '/home',
@@ -38,6 +38,46 @@ export default new Router({
             // this generates a separate chunk (search.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
             component: () => import(/* webpackChunkName: "search" */ './views/Search.vue')
+        },
+        {
+            path: '/home/newslist',
+            name: 'newslist',
+            // route level code-splitting
+            // this generates a separate chunk (newslist.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "newslist" */ './components/news/NewsList.vue')
+        },
+        {
+            path: '/home/newsinfo/:id',
+            name: 'newsinfo',
+            // route level code-splitting
+            // this generates a separate chunk (newsinfo.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "newsinfo" */ './components/news/NewsInfo.vue')
+        },
+        {
+            path: '/home/photolist',
+            name: 'photolist',
+            // route level code-splitting
+            // this generates a separate chunk (photolist.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "photolist" */ './components/photo/PhotoList.vue')
+        },
+        {
+            path: '/home/photoinfo/:id',
+            name: 'photoinfo',
+            // route level code-splitting
+            // this generates a separate chunk (photoinfo.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "photoinfo" */ './components/photo/PhotoInfo.vue')
+        },
+        {
+            path: '/home/goodslist',
+            name: 'goodslist',
+            // route level code-splitting
+            // this generates a separate chunk (goodslist.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "goodslist" */ './components/goods/GoodsList.vue')
         }
     ],
     linkActiveClass: "mui-active"

@@ -3,6 +3,8 @@ module.exports = {
         '@vue/app',
     ],
     plugins: [
+        //移除严格模式
+        "transform-remove-strict-mode",
         [
             "component",
             {
@@ -10,5 +12,8 @@ module.exports = {
                 "style": true
             }
         ]
-    ]
+    ],
+    //移除严格模式
+    ignore: [
+        "./src/lib/mui/js/*.js"]
 }
