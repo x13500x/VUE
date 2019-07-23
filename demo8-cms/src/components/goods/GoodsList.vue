@@ -1,53 +1,59 @@
 <template>
     <div class="goodslist">
-        <div class="goods-item">
-            <img src="http://ofv795nmp.bkt.clouddn.com//upload/201504/20/thumb_201504200119256512.jpg" alt="">
-            <h3 class="title">小米（Mi）小米Note 16G双网通版</h3>
+        <div class="goods-item" v-for="item in goodslist" :key="item.id" @click="goDetail(item.id)">
+            <img :src="item.img_url" alt="">
+            <h3 class="title">{{item.title}}</h3>
             <div class="info">
                 <p class="price">
-                    <span class="new">￥899</span>
-                    <span class="old">￥999</span>
+                    <span class="new">￥{{item.sell_price}}</span>
+                    <span class="old">￥{{item.market_price}}</span>
                 </p>
                 <p class="sell">
                     <span>热卖中</span>
-                    <span>剩60件</span>
+                    <span>剩{{item.stock_quantity}}件</span>
                 </p>
             </div>
         </div>
-        <div class="goods-item">
-            <img src="http://ofv795nmp.bkt.clouddn.com//upload/201504/20/thumb_201504200214471783.jpg" alt="">
-            <h3 class="title">尼康(Nikon)D3300套机（18-55mm f/3.5-5.6G VRII）（黑色）</h3>
-            <div class="info">
-                <p class="price">
-                    <span class="new">￥899</span>
-                    <span class="old">￥999</span>
-                </p>
-                <p class="sell">
-                    <span>热卖中</span>
-                    <span>剩60件</span>
-                </p>
-            </div>
-        </div>
-        <div class="goods-item">
-            <img src="http://ofv795nmp.bkt.clouddn.com//upload/201504/20/thumb_201504200119256512.jpg" alt="">
-            <h3 class="title">小米（Mi）小米Note 16G双网通版</h3>
-            <div class="info">
-                <p class="price">
-                    <span class="new">￥899</span>
-                    <span class="old">￥999</span>
-                </p>
-                <p class="sell">
-                    <span>热卖中</span>
-                    <span>剩60件</span>
-                </p>
-            </div>
-        </div>
+        <mt-button type="danger" size="large" plain @click="getMoreFoods">加载更多</mt-button>
     </div>
 </template>
 
 <script>
     export default {
-        name: "GoodsList"
+        name: "GoodsList",
+        data() {
+            return {
+                pageindex: 1,//初始数据页面
+                goodslist: []
+            }
+        },
+        created() {
+            this.getGoodsList()
+        },
+        methods: {
+            getGoodsList() {
+                this.$http.get("api/getgoods?pageindex=" + this.pageindex).then(res => {
+                    if (res.body.status === 0) {
+                        // this.goodslist = res.body.message
+                        //数据拼接
+                        this.goodslist = this.goodslist.concat(res.body.message)
+                    }
+                })
+            },
+            getMoreFoods() {
+                this.pageindex++
+                this.getGoodsList()
+            },
+            goDetail(id){
+                console.log(this);
+                // 1. 最简单的
+                // this.$router.push("/home/goodsinfo/" + id);
+                // 2. 传递对象
+                // this.$router.push({ path: "/home/goodsinfo/" + id });
+                // 3. 传递命名的路由
+                this.$router.push({name:"goodsinfo",params:{id}})
+            }
+        }
     }
 </script>
 

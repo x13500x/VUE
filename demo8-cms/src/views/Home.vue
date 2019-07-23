@@ -1,10 +1,6 @@
 <template>
     <div class="home">
-        <mt-swipe :auto="4000">
-            <mt-swipe-item v-for="item in lunbotuList" :key="item.id">
-                <img :src="item.img" alt="">
-            </mt-swipe-item>
-        </mt-swipe>
+        <lunbotu :lunbotuList="lunbotuList"/>
         <ul class="mui-table-view mui-grid-view mui-grid-9">
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                 <router-link to="/home/newslist">
@@ -50,6 +46,7 @@
     // @ is an alias to /src
     import {Toast} from "mint-ui"
 
+    import lunbotu from "../components/subcomponents/lunbotu"
     export default {
         name: 'home',
         components: {},
@@ -73,28 +70,14 @@
                     }
                 })
             }
+        },
+        components:{
+            lunbotu
         }
     }
 </script>
 <style scoped lang="scss">
-    .mint-swipe {
-        height: 150px;
-        .mint-swipe-item {
-            &:nth-child(1) {
-                background-color: red;
-            }
-            &:nth-child(2) {
-                background-color: blue;
-            }
-            &:nth-child(3) {
-                background-color: green;
-            }
-            img {
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
+
 
     .mui-grid-view.mui-grid-9 {
         background-color: white;

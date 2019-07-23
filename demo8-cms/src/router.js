@@ -78,6 +78,14 @@ export default new Router({
             // this generates a separate chunk (goodslist.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
             component: () => import(/* webpackChunkName: "goodslist" */ './components/goods/GoodsList.vue')
+        },
+        {
+            path: '/home/goodsinfo/:id',
+            name: 'goodsinfo',
+            // route level code-splitting
+            // this generates a separate chunk (goodsinfo.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "goodsinfo" */ './components/goods/GoodsInfo.vue')
         }
     ],
     linkActiveClass: "mui-active"

@@ -1,0 +1,30 @@
+<template>
+    <div class="lunbotu">
+        <!---->
+        <mt-swipe :auto="4000">
+            <mt-swipe-item v-for="item in lunbotuList" :key="item.id">
+                <img :src="item.img" alt="">
+            </mt-swipe-item>
+        </mt-swipe>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "lunbotu",
+        props:["lunbotuList"]
+    }
+</script>
+
+<style scoped lang="scss">
+    .mint-swipe {
+        height: 150px;
+        .mint-swipe-item {
+            text-align: center;
+            img {
+                /*width: 100%;*/
+                height: 100%;
+            }
+        }
+    }
+</style>
