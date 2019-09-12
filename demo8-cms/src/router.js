@@ -86,6 +86,22 @@ export default new Router({
             // this generates a separate chunk (goodsinfo.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
             component: () => import(/* webpackChunkName: "goodsinfo" */ './components/goods/GoodsInfo.vue')
+        },
+        {
+            path: '/home/goodsdesc/:id',
+            name: 'goodsdesc',
+            // route level code-splitting
+            // this generates a separate chunk (goodsdesc.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "goodsdesc" */ './components/goods/GoodsDesc.vue')
+        },
+        {
+            path: '/home/goodscomment/:id',
+            name: 'goodscomment',
+            // route level code-splitting
+            // this generates a separate chunk (goodscomment.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "goodscomment" */ './components/goods/GoodsComment.vue')
         }
     ],
     linkActiveClass: "mui-active"
