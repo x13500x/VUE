@@ -64,7 +64,7 @@
                 goodsinfo: {},
                 id: this.$route.params.id,
                 ballflag: false,
-                selectedCount:1
+                selectedCount: 1
             }
         },
         created() {
@@ -97,6 +97,15 @@
             },
             addToShopCar() {
                 this.ballflag = !this.ballflag
+                //{id:商品id，count：商品数量，price：商品价格，selected：true}
+                var goodsinfo = {
+                    id: this.id,
+                    count: this.selectedCount,
+                    price: this.goodsinfo.sell_price,
+                    selected: true
+                }
+                //调用store中mutations中的方法
+                this.$store.commit("addToCar",goodsinfo)
             },
             beforeEnter(el) {
                 el.style.transform = "translate(0,0)"
@@ -115,15 +124,15 @@
                 el.style.transition = "all 0.5s cubic-bezier(.19,.85,.87,.28)"
                 // 这里的 done， 起始就是 afterEnter 这个函数，也就是说：done 是 afterEnter 函数的引用 done()
                 //延迟1s过度时间然后执行done
-                setTimeout(() =>{
+                setTimeout(() => {
                     done()
-                },500)
+                }, 500)
 
             },
             afterEnter(el) {
                 this.ballflag = !this.ballflag
             },
-            getSelectedCount(count){
+            getSelectedCount(count) {
                 this.selectedCount = count
                 console.log("父组件拿到的数据：" + this.selectedCount)
             }

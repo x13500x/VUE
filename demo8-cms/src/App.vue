@@ -1,7 +1,11 @@
 <template>
     <div id="app" class="app-container">
         <!--头部区域-->
-        <mt-header fixed title="Vue项目"></mt-header>
+        <mt-header fixed title="Vue项目">
+            <span slot="left" @click="goBack" v-show="flag">
+                <mt-button icon="back">返回</mt-button>
+            </span>
+        </mt-header>
         <!--中间区域-->
         <transition>
             <router-view/>
@@ -18,7 +22,11 @@
                 <span class="mui-tab-label">会员</span>
             </router-link>
             <router-link class="mui-tab-item-xhz" to="/shopcar">
-                <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">0</span></span>
+                <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
+                    <span class="mui-badge" id="badge">
+                        {{this.$store.getters.getAllCount}}
+                    </span>
+                </span>
                 <span class="mui-tab-label">购物车</span>
             </router-link>
             <router-link class="mui-tab-item-xhz" to="/search">
@@ -28,11 +36,40 @@
         </nav>
     </div>
 </template>
+<script>
+    export default {
+        data() {
+            return {
+                flag: false
+            }
+        },
+        created() {
+            //刷新创建页面，如果非首页显示返回图标，首页则不显示
+            this.flag = this.$route.path === "/home" ? false : true
+        },
+        methods: {
+            goBack() {
+                this.$router.go(-1)
+            }
+        },
+        watch: {
+            //监视页面路径变化，如果非首页显示返回图标，首页则不显示
+            "$route.path": function (newVal) {
+                if (newVal === "/home") {
+                    this.flag = false
+                } else {
+                    this.flag = true
+                }
+            }
+        }
+    }
+</script>
 
 <style lang="scss">
     .mint-header.is-fixed {
         z-index: 99;
     }
+
     .app-container {
         padding-top: 40px;
         padding-bottom: 50px;
