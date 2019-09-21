@@ -12,7 +12,7 @@
 <script>
     export default {
         name: "lunbotu",
-        props:["lunbotuList","isfull"]
+        props: ["lunbotuList", "isfull"]
     }
 </script>
 
@@ -27,7 +27,8 @@
             }
         }
     }
-    .full{
+
+    .full {
         width: 100%;
     }
 </style>

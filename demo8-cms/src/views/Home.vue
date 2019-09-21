@@ -47,6 +47,7 @@
     import {Toast} from "mint-ui"
 
     import lunbotu from "../components/subcomponents/lunbotu"
+
     export default {
         name: 'home',
         components: {},
@@ -72,14 +73,12 @@
                 })
             }
         },
-        components:{
+        components: {
             lunbotu
         }
     }
 </script>
 <style scoped lang="scss">
-
-
     .mui-grid-view.mui-grid-9 {
         background-color: white;
         border: none;

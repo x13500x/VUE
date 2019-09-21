@@ -8,24 +8,25 @@
 
 <script>
     import mui from "../../lib/mui/js/mui.min"
+
     export default {
         name: "NumberBox",
-        mounted(){
+        mounted() {
             //初始化数字选择框组件
             mui(".mui-numbox").numbox()
             console.log(this.max)
         },
-        methods:{
-            countChanged(){
+        methods: {
+            countChanged() {
                 //每当文本框数据改变时，传递数据
                 // console.log(this.$refs.numbox.value)
-                this.$emit("getconut",parseInt(this.$refs.numbox.value))
+                this.$emit("getconut", parseInt(this.$refs.numbox.value))
             }
         },
-        props:["max"],
-        watch:{
-            "max":function (newVal,oldVal) {
-                mui(".mui-numbox").numbox().setOption("max",newVal)
+        props: ["max"],
+        watch: {
+            "max": function (newVal, oldVal) {
+                mui(".mui-numbox").numbox().setOption("max", newVal)
             }
         }
     }

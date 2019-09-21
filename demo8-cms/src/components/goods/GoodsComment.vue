@@ -6,14 +6,15 @@
 
 <script>
     import cmtbox from "../subcomponents/comment"
+
     export default {
         name: "GoodsComment",
-        data(){
-            return{
-                id:this.$route.params.id
+        data() {
+            return {
+                id: this.$route.params.id
             }
         },
-        components:{
+        components: {
             cmtbox
         }
     }
